@@ -1,0 +1,16 @@
+# Future OS - Configurazione GRUB
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT=5
+GRUB_TIMEOUT_STYLE=menu
+GRUB_DISTRIBUTOR="Future OS"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX=""
+
+GRUB_THEME=/boot/grub/themes/future-os/theme.txt
+GRUB_BACKGROUND=/boot/grub/themes/future-os/background.png
+GRUB_COLOR_NORMAL="cyan/black"
+GRUB_COLOR_HIGHLIGHT="black/cyan"
+
+GRUB_GFXMODE=1920x1080,auto
+GRUB_GFXPAYLOAD_LINUX=keep

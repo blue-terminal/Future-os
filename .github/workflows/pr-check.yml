@@ -1,0 +1,32 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  summary:
+    name: Riepilogo modifiche
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: File modificati
+        run: |
+          echo "### File modificati in questa PR:"
+          git diff --name-only origin/main...HEAD
+
+      - name: Controlla assenza branding obsoleto nei file custom
+        run: |
+          found=0
+          while IFS= read -r -d '' file; do
+            if grep -qiI 'parrotsec\|parrot-security' "$file" 2>/dev/null; then
+              echo "ATTENZIONE: riferimento obsoleto in $file"
+              grep -niI 'parrotsec\|parrot-security' "$file"
+              found=$((found+1))
+            fi
+          done < <(find packages/custom/future-os-resources -type f -print0)
+          [ $found -eq 0 ] || { echo "$found file con branding obsoleto"; exit 1; }
+          echo "OK: branding pulito"

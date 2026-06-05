@@ -1,0 +1,69 @@
+# Future OS GRUB Theme
+
+title-text: "Future OS"
+title-font: "Inter Bold 24"
+title-color: "#00d4ff"
+
+desktop-color: "#0a0e1a"
+desktop-image: "background.png"
+
+terminal-font: "JetBrains Mono Regular 13"
+
++ label {
+    top = 15%
+    left = 50%-200
+    width = 400
+    height = 40
+    text = "Future OS 1.0 Horizon"
+    font = "Inter Bold 22"
+    color = "#00d4ff"
+    align = "center"
+}
+
++ label {
+    top = 22%
+    left = 50%-150
+    width = 300
+    height = 20
+    text = "Security & Privacy First"
+    font = "Inter Regular 13"
+    color = "#94a3b8"
+    align = "center"
+}
+
++ boot_menu {
+    left = 50%-200
+    top = 32%
+    width = 400
+    height = 40%
+    item_font = "Inter Regular 14"
+    item_color = "#e2e8f0"
+    selected_item_color = "#00d4ff"
+    item_height = 40
+    item_padding = 16
+    item_spacing = 4
+    scrollbar = true
+    scrollbar_width = 4
+}
+
++ progress_bar {
+    id = "__timeout__"
+    left = 50%-200
+    top = 86%
+    width = 400
+    height = 4
+    fg_color = "#00d4ff"
+    bg_color = "#1e2d45"
+    text = ""
+}
+
++ label {
+    top = 90%
+    left = 50%-200
+    width = 400
+    height = 20
+    text = "Premi [Invio] per avviare, [e] per modificare"
+    font = "Inter Regular 11"
+    color = "#475569"
+    align = "center"
+}
