@@ -1,0 +1,13 @@
+[Unit]
+Description=Aggiornamento automatico giornaliero Future OS
+Documentation=https://futureos.io/support
+
+[Timer]
+# Ogni giorno alle 03:00, con ritardo casuale fino a 30 min
+OnCalendar=*-*-* 03:00:00
+RandomizedDelaySec=1800
+Persistent=true
+WakeSystem=false
+
+[Install]
+WantedBy=timers.target

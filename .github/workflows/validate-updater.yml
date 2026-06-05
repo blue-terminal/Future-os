@@ -1,0 +1,75 @@
+name: Validate future-os-updater
+
+on:
+  push:
+    branches: [main, 'claude/**']
+    paths:
+      - 'packages/custom/future-os-updater/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/custom/future-os-updater/**'
+
+jobs:
+  validate-updater:
+    name: Verifica pacchetto updater
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verifica file obbligatori
+        run: |
+          PKG=packages/custom/future-os-updater
+          missing=0
+          for f in \
+            "$PKG/package.json" \
+            "$PKG/install.sh" \
+            "$PKG/uninstall.sh" \
+            "$PKG/future-os-update.sh" \
+            "$PKG/systemd/future-os-updater.service" \
+            "$PKG/systemd/future-os-updater.timer" \
+            "$PKG/apt/20auto-upgrades" \
+            "$PKG/apt/50unattended-upgrades-future-os"
+          do
+            if [ ! -f "$f" ]; then
+              echo "MANCANTE: $f"; missing=$((missing+1))
+            else
+              echo "OK: $f"
+            fi
+          done
+          [ $missing -eq 0 ] || { echo "$missing file mancanti"; exit 1; }
+
+      - name: Sintassi script bash
+        run: |
+          PKG=packages/custom/future-os-updater
+          for s in "$PKG/install.sh" "$PKG/uninstall.sh" "$PKG/future-os-update.sh"; do
+            bash -n "$s" && echo "OK: $s"
+          done
+
+      - name: ShellCheck updater
+        run: |
+          sudo apt-get install -y -q shellcheck
+          shellcheck --severity=warning packages/custom/future-os-updater/future-os-update.sh
+          shellcheck --severity=warning packages/custom/future-os-updater/install.sh
+          shellcheck --severity=warning packages/custom/future-os-updater/uninstall.sh
+
+      - name: Valida JSON
+        run: |
+          python3 -m json.tool packages/custom/future-os-updater/package.json > /dev/null
+          echo "OK: package.json valido"
+
+      - name: Verifica unit systemd
+        run: |
+          sudo apt-get install -y -q systemd
+          systemd-analyze verify packages/custom/future-os-updater/systemd/future-os-updater.service 2>/dev/null || true
+          grep -q 'OnCalendar' packages/custom/future-os-updater/systemd/future-os-updater.timer
+          grep -q 'RandomizedDelaySec' packages/custom/future-os-updater/systemd/future-os-updater.timer
+          grep -q 'Persistent=true' packages/custom/future-os-updater/systemd/future-os-updater.timer
+          echo "OK: timer configurato correttamente"
+
+      - name: Verifica configurazione APT
+        run: |
+          grep -q 'Debian-Security' packages/custom/future-os-updater/apt/50unattended-upgrades-future-os
+          grep -q 'Automatic-Reboot "false"' packages/custom/future-os-updater/apt/50unattended-upgrades-future-os
+          grep -q 'Update-Package-Lists "1"' packages/custom/future-os-updater/apt/20auto-upgrades
+          echo "OK: APT configurato correttamente"

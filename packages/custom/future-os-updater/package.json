@@ -1,0 +1,20 @@
+{
+  "name": "future-os-updater",
+  "version": "1.0.0",
+  "description": "Sistema di auto-aggiornamento Future OS: aggiornamenti di sicurezza automatici, timer giornaliero, notifiche desktop",
+  "author": "blue-terminal",
+  "license": "GPL-3.0",
+  "dependencies": [
+    "unattended-upgrades",
+    "apt-listchanges",
+    "libnotify-bin"
+  ],
+  "components": {
+    "updater": "future-os-update.sh",
+    "service": "systemd/future-os-updater.service",
+    "timer": "systemd/future-os-updater.timer",
+    "apt": "apt/"
+  },
+  "install": "install.sh",
+  "uninstall": "uninstall.sh"
+}

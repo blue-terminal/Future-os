@@ -1,0 +1,19 @@
+[Unit]
+Description=Future OS Auto-Updater
+Documentation=https://futureos.io/support
+After=network-online.target
+Wants=network-online.target
+ConditionACPower=true
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/future-os-update
+Nice=19
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+StandardOutput=append:/var/log/future-os/updater.log
+StandardError=append:/var/log/future-os/updater.log
+Environment=DEBIAN_FRONTEND=noninteractive
+
+[Install]
+WantedBy=multi-user.target

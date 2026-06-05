@@ -1,0 +1,38 @@
+// Future OS - Configurazione unattended-upgrades
+Unattended-Upgrade::Allowed-Origins {
+    // Aggiornamenti di sicurezza Debian
+    "origin=Debian,codename=${distro_codename},label=Debian-Security";
+    "origin=Debian,codename=${distro_codename}-security,label=Debian-Security";
+    // Aggiornamenti Future OS (quando disponibili via repository custom)
+    "origin=FutureOS,codename=${distro_codename}";
+};
+
+// NON aggiornare automaticamente tutto (evita rotture)
+Unattended-Upgrade::Package-Blacklist {
+    "libc6";
+    "libc6-dev";
+    "libstdc.*";
+    "grub.*";
+    "linux-image.*";
+    "linux-headers.*";
+};
+
+// Rimozione automatica dipendenze inutilizzate
+Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
+Unattended-Upgrade::Remove-New-Unused-Dependencies "true";
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+
+// Log dettagliato
+Unattended-Upgrade::Verbose "true";
+Unattended-Upgrade::Debug "false";
+
+// Non riavviare automaticamente (avvisa invece)
+Unattended-Upgrade::Automatic-Reboot "false";
+Unattended-Upgrade::Automatic-Reboot-WithUsers "false";
+
+// Email notifiche (opzionale, commentare se non usato)
+// Unattended-Upgrade::Mail "admin@futureos.io";
+// Unattended-Upgrade::MailReport "on-change";
+
+// Larghezza banda limitata (0 = illimitata)
+Acquire::http::Dl-Limit "0";
