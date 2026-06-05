@@ -20,13 +20,17 @@ step "Dipendenze..."
 apt-get install -y -q unattended-upgrades apt-listchanges libnotify-bin
 ok "Dipendenze installate"
 
-step "Script updater..."
+step "Comando 'smart'..."
+install -m 755 "$PKG_DIR/smart.sh" /usr/local/bin/smart
+ok "Installato: /usr/local/bin/smart"
+
+step "Script updater interno..."
 install -m 755 "$PKG_DIR/future-os-update.sh" /usr/local/bin/future-os-update
-ok "Script installato in /usr/local/bin/future-os-update"
+ok "Installato: /usr/local/bin/future-os-update"
 
 step "Configurazione APT auto-upgrades..."
-install -m 644 "$PKG_DIR/apt/20auto-upgrades"                    /etc/apt/apt.conf.d/20auto-upgrades
-install -m 644 "$PKG_DIR/apt/50unattended-upgrades-future-os"   /etc/apt/apt.conf.d/50unattended-upgrades
+install -m 644 "$PKG_DIR/apt/20auto-upgrades"                  /etc/apt/apt.conf.d/20auto-upgrades
+install -m 644 "$PKG_DIR/apt/50unattended-upgrades-future-os" /etc/apt/apt.conf.d/50unattended-upgrades
 ok "APT configurato"
 
 step "Servizio systemd..."
@@ -34,13 +38,16 @@ install -m 644 "$PKG_DIR/systemd/future-os-updater.service" /etc/systemd/system/
 install -m 644 "$PKG_DIR/systemd/future-os-updater.timer"   /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now future-os-updater.timer
-ok "Timer attivato (aggiornamento giornaliero)"
+ok "Timer attivato (aggiornamento automatico giornaliero alle 03:00)"
 
 step "Directory log..."
-mkdir -p /var/log/future-os
+mkdir -p /var/log/future-os /var/lib/future-os
 ok "Pronto"
 
 echo -e "\n${GREEN}${BOLD}Installazione completata!${RESET}"
-echo -e "  Il sistema si aggiornerà automaticamente ogni giorno."
-echo -e "  Log: /var/log/future-os/updater.log"
-echo -e "  Prossimo aggiornamento: $(systemctl status future-os-updater.timer | grep 'Trigger:' | sed 's/.*Trigger: //')\n"
+echo -e "  Per aggiornare il sistema esegui:"
+echo -e "    ${BOLD}sudo smart update${RESET}"
+echo -e "  Per vedere lo stato:"
+echo -e "    ${BOLD}smart status${RESET}"
+echo -e "  Per il log:"
+echo -e "    ${BOLD}smart log${RESET}\n"

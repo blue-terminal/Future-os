@@ -9,48 +9,54 @@ Future OS è una distribuzione Linux basata su **Debian Testing**, pensata per l
 - Strumenti di sicurezza preinstallati
 - Desktop environment leggero (MATE / KDE)
 - Identità visiva originale Future OS
-- Pacchetti aggiornati e personalizzati
+- Aggiornamenti automatici e sicuri
+
+## Aggiornamento del sistema
+
+```bash
+# Aggiorna il sistema (sicurezza + pacchetti Future OS)
+sudo smart update
+
+# Aggiorna tutto
+sudo smart update --full
+
+# Controlla gli aggiornamenti disponibili
+smart status
+
+# Vedi il log degli aggiornamenti
+smart log
+```
+
+L'aggiornamento automatico avviene ogni giorno alle 03:00 (solo sicurezza + pacchetti Future OS).
 
 ## Struttura del repository
 
 ```
 future-os/
 ├── packages/
-│   ├── base/                    # Pacchetti di sistema base
-│   ├── security/                # Strumenti di sicurezza e pentesting
-│   ├── desktop/                 # Ambiente desktop e applicazioni
+│   ├── base/
+│   ├── security/
+│   ├── desktop/
 │   └── custom/
-│       └── future-os-resources/  # Pacchetto risorse e branding
+│       ├── future-os-resources/  # Tema, branding, wallpaper, suoni, GRUB
+│       └── future-os-updater/    # Auto-aggiornamento e comando smart
 ├── scripts/
-│   ├── build.sh                 # Build dell'immagine ISO
-│   └── install.sh               # Installazione guidata
+│   ├── build.sh
+│   └── install.sh
 └── config/
-    ├── apt/                     # Sorgenti e preferenze APT
-    └── grub/                    # Configurazione bootloader
+    ├── apt/
+    └── grub/
 ```
 
-## Build
+## Installazione pacchetti
 
 ```bash
-bash scripts/build.sh
-```
-
-## Installazione
-
-```bash
-bash scripts/install.sh
-```
-
-## Pacchetto risorse
-
-Installa il pacchetto completo di risorse (tema, branding, wallpaper, suoni, GRUB):
-
-```bash
+# Risorse e tema
 sudo bash packages/custom/future-os-resources/install.sh
-```
 
-Per applicare anche il tema GRUB:
+# Auto-aggiornamento (abilita 'sudo smart update')
+sudo bash packages/custom/future-os-updater/install.sh
 
-```bash
+# Con tema GRUB
 sudo APPLY_GRUB=1 bash packages/custom/future-os-resources/install.sh
 ```
