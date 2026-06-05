@@ -1,5 +1,7 @@
 # Future OS
 
+![Future OS Banner](assets/banner.svg)
+
 Future OS è una distribuzione Linux basata su **Debian Testing**, pensata per la sicurezza, la privacy e l'uso quotidiano.
 
 ## Caratteristiche
@@ -40,6 +42,8 @@ future-os/
 │   └── custom/
 │       ├── future-os-resources/  # Tema, branding, wallpaper, suoni, GRUB
 │       └── future-os-updater/    # Auto-aggiornamento e comando smart
+├── assets/
+│   └── banner.svg
 ├── scripts/
 │   ├── build.sh
 │   └── install.sh
