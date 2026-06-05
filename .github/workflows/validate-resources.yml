@@ -1,0 +1,142 @@
+name: Validate future-os-resources
+
+on:
+  push:
+    branches: [main, 'claude/**']
+    paths:
+      - 'packages/custom/future-os-resources/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'packages/custom/future-os-resources/**'
+
+jobs:
+  validate-structure:
+    name: Verifica struttura pacchetto
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verifica file obbligatori
+        run: |
+          PKG=packages/custom/future-os-resources
+          missing=0
+          for f in \
+            "$PKG/package.json" \
+            "$PKG/install.sh" \
+            "$PKG/uninstall.sh" \
+            "$PKG/branding/os-release" \
+            "$PKG/branding/motd" \
+            "$PKG/branding/issue.net" \
+            "$PKG/theme/gtk/index.theme" \
+            "$PKG/theme/gtk/gtk.css" \
+            "$PKG/theme/gtk/colors.conf" \
+            "$PKG/theme/icons/index.theme" \
+            "$PKG/theme/cursors/index.theme" \
+            "$PKG/theme/lightdm/lightdm-gtk-greeter.conf" \
+            "$PKG/config/default-settings.conf" \
+            "$PKG/config/desktop.conf" \
+            "$PKG/config/panel.conf" \
+            "$PKG/wallpapers/index.json" \
+            "$PKG/sounds/index.json" \
+            "$PKG/fonts/fonts.conf" \
+            "$PKG/grub/theme.txt" \
+            "$PKG/grub/grub-defaults"
+          do
+            if [ ! -f "$f" ]; then
+              echo "MANCANTE: $f"
+              missing=$((missing+1))
+            else
+              echo "OK: $f"
+            fi
+          done
+          [ $missing -eq 0 ] || { echo "$missing file mancanti"; exit 1; }
+
+      - name: Verifica script eseguibili
+        run: |
+          PKG=packages/custom/future-os-resources
+          bash -n "$PKG/install.sh"
+          bash -n "$PKG/uninstall.sh"
+          bash -n "$PKG/branding/motd"
+          echo "Tutti gli script sono sintatticamente validi"
+
+      - name: Valida JSON
+        run: |
+          PKG=packages/custom/future-os-resources
+          python3 -m json.tool "$PKG/package.json"           > /dev/null
+          python3 -m json.tool "$PKG/wallpapers/index.json" > /dev/null
+          python3 -m json.tool "$PKG/sounds/index.json"     > /dev/null
+          echo "Tutti i file JSON sono validi"
+
+  validate-os-release:
+    name: Verifica os-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Controlla campi obbligatori
+        run: |
+          FILE=packages/custom/future-os-resources/branding/os-release
+          missing=0
+          for field in NAME VERSION ID ID_LIKE PRETTY_NAME VERSION_ID \
+                       HOME_URL SUPPORT_URL BUG_REPORT_URL PRIVACY_POLICY_URL \
+                       VERSION_CODENAME; do
+            if grep -q "^${field}=" "$FILE"; then
+              echo "OK: $field"
+            else
+              echo "MANCANTE: $field"
+              missing=$((missing+1))
+            fi
+          done
+          [ $missing -eq 0 ] || { echo "$missing campi mancanti in os-release"; exit 1; }
+
+      - name: Controlla URL futureos.io
+        run: |
+          FILE=packages/custom/future-os-resources/branding/os-release
+          for url_field in HOME_URL SUPPORT_URL BUG_REPORT_URL PRIVACY_POLICY_URL; do
+            val=$(grep "^${url_field}=" "$FILE" | cut -d= -f2- | tr -d '"')
+            if echo "$val" | grep -q 'futureos.io'; then
+              echo "OK: $url_field=$val"
+            else
+              echo "ERRORE: $url_field non punta a futureos.io (trovato: $val)"
+              exit 1
+            fi
+          done
+
+      - name: Controlla assenza branding obsoleto
+        run: |
+          FILE=packages/custom/future-os-resources/branding/os-release
+          if grep -qi 'parrot' "$FILE"; then
+            echo "ERRORE: riferimento obsoleto trovato in os-release"
+            exit 1
+          fi
+          echo "OK: branding pulito"
+
+  validate-theme:
+    name: Verifica tema GTK
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Controlla palette colori Future OS
+        run: |
+          CSS=packages/custom/future-os-resources/theme/gtk/gtk.css
+          CONF=packages/custom/future-os-resources/theme/gtk/colors.conf
+          for color in '#16a085' '#1abc9c' '#2ecc71'; do
+            if grep -qi "$color" "$CSS" "$CONF"; then
+              echo "ERRORE: colore non autorizzato $color trovato nel tema"
+              exit 1
+            fi
+          done
+          echo "OK: palette colori conforme"
+
+      - name: Verifica colori Future OS presenti
+        run: |
+          CSS=packages/custom/future-os-resources/theme/gtk/gtk.css
+          for color in '#00d4ff' '#0a0e1a' '#7c3aed'; do
+            if grep -qi "$color" "$CSS"; then
+              echo "OK: colore Future OS $color presente"
+            else
+              echo "ATTENZIONE: colore $color non trovato nel CSS"
+            fi
+          done

@@ -1,0 +1,38 @@
+{
+  "package": "future-os-wallpapers",
+  "version": "1.0.0",
+  "install_path": "/usr/share/future-os/wallpapers/",
+  "default": "future-horizon-dark.png",
+  "wallpapers": [
+    {
+      "name": "future-horizon-dark",
+      "file": "future-horizon-dark.png",
+      "description": "Orizzonte digitale notturno - sfondo predefinito",
+      "colors": ["#0a0e1a", "#00d4ff", "#7c3aed"]
+    },
+    {
+      "name": "neural-network",
+      "file": "neural-network.png",
+      "description": "Rete neurale stilizzata su sfondo scuro",
+      "colors": ["#0d1526", "#00d4ff", "#ff6b35"]
+    },
+    {
+      "name": "space-abstract",
+      "file": "space-abstract.png",
+      "description": "Composizione astratta spaziale",
+      "colors": ["#0a0e1a", "#7c3aed", "#3b82f6"]
+    },
+    {
+      "name": "circuit-dark",
+      "file": "circuit-dark.png",
+      "description": "Schema circuitale stilizzato",
+      "colors": ["#111827", "#00d4ff", "#1e2d45"]
+    },
+    {
+      "name": "future-os-minimal",
+      "file": "future-os-minimal.png",
+      "description": "Logo Future OS su sfondo minimalista",
+      "colors": ["#0a0e1a", "#00d4ff"]
+    }
+  ]
+}

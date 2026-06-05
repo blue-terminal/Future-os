@@ -1,0 +1,19 @@
+{
+  "package": "future-os-sounds",
+  "version": "1.0.0",
+  "install_path": "/usr/share/sounds/future-os/",
+  "sounds": {
+    "system": [
+      { "name": "startup",  "file": "startup.ogg",  "description": "Avvio sistema" },
+      { "name": "shutdown", "file": "shutdown.ogg", "description": "Spegnimento" },
+      { "name": "login",    "file": "login.ogg",    "description": "Accesso utente" },
+      { "name": "logout",   "file": "logout.ogg",   "description": "Disconnessione" }
+    ],
+    "ui": [
+      { "name": "button-press",  "file": "button-press.ogg",  "description": "Click bottone" },
+      { "name": "notification",  "file": "notification.ogg",  "description": "Notifica" },
+      { "name": "error",         "file": "error.ogg",         "description": "Errore" },
+      { "name": "complete",      "file": "complete.ogg",      "description": "Operazione completata" }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "future-os-resources",
+  "version": "1.0.0",
+  "description": "Pacchetto risorse personalizzato Future OS: tema, icone, branding, wallpaper, suoni e configurazioni desktop",
+  "author": "blue-terminal",
+  "license": "GPL-3.0",
+  "components": {
+    "theme": "packages/custom/future-os-resources/theme/",
+    "branding": "packages/custom/future-os-resources/branding/",
+    "wallpapers": "packages/custom/future-os-resources/wallpapers/",
+    "sounds": "packages/custom/future-os-resources/sounds/",
+    "config": "packages/custom/future-os-resources/config/",
+    "grub": "packages/custom/future-os-resources/grub/",
+    "fonts": "packages/custom/future-os-resources/fonts/"
+  },
+  "install": "install.sh",
+  "uninstall": "uninstall.sh"
+}

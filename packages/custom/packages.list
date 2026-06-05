@@ -1,0 +1,8 @@
+# Pacchetti custom - Future OS
+
+# future-os-core        - Configurazioni e branding base
+# future-os-theme       - Tema grafico personalizzato
+# future-os-welcome     - App di benvenuto post-installazione
+# future-os-updater     - Gestore aggiornamenti personalizzato
+# future-os-hardening   - Script di hardening automatico
+# future-os-resources   - Pacchetto risorse completo (tema, icone, branding, wallpaper, suoni, GRUB)

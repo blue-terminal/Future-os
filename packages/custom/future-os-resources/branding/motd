@@ -1,0 +1,23 @@
+#!/bin/bash
+# /etc/update-motd.d/10-future-os
+
+CYAN='\033[1;36m'
+BLUE='\033[1;34m'
+PURPLE='\033[1;35m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
+echo ""
+echo -e "${CYAN}  ███████╗██╗   ██╗████████╗██╗   ██╗██████╗ ███████╗    ██████╖ ███████╗${RESET}"
+echo -e "${CYAN}  ██╔════╝██║   ██║╚══██╔══╝██║   ██║██╔══██╗██╔════╝   ██╔══██╗██╔════╝${RESET}"
+echo -e "${CYAN}  █████╗  ██║   ██║   ██║   ██║   ██║██████╔╝█████╗     ██║   ██║███████╗${RESET}"
+echo -e "${CYAN}  ██╔══╝  ██║   ██║   ██║   ██║   ██║██╔══██╗██╔══╝     ██║   ██║╚════██║${RESET}"
+echo -e "${CYAN}  ██║     ╚██████╔╝   ██║   ╚██████╔╝██║  ██║███████╗   ╚██████╔╝███████║${RESET}"
+echo -e "${CYAN}  ╚═╝      ╚═════╝    ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚══════╝${RESET}"
+echo ""
+echo -e "  ${BOLD}Future OS 1.0 Horizon${RESET}  |  ${BLUE}Security & Privacy First${RESET}"
+echo ""
+echo -e "  ${PURPLE}Kernel:${RESET}   $(uname -r)"
+echo -e "  ${PURPLE}Uptime:${RESET}   $(uptime -p)"
+echo -e "  ${PURPLE}Utenti:${RESET}   $(who | wc -l) connessi"
+echo ""
