@@ -1,0 +1,26 @@
+# Future OS - Pacchetti base
+systemd
+systemd-sysv
+dbus
+udev
+network-manager
+network-manager-gnome
+wireless-tools
+wpasupplicant
+firmware-linux
+firmware-linux-nonfree
+firmware-iwlwifi
+firmware-realtek
+apt-transport-https
+ca-certificates
+curl
+wget
+git
+nano
+vim
+bash-completion
+man-db
+locales
+localepurge
+grub-efi-amd64
+os-prober

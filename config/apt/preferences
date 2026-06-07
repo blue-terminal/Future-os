@@ -1,0 +1,10 @@
+# Future OS - APT Pinning
+# Preferisce Debian Testing per tutto
+Package: *
+Pin: release a=testing
+Pin-Priority: 900
+
+# Sicurezza da testing-security
+Package: *
+Pin: release a=testing-security
+Pin-Priority: 950

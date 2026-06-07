@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Future OS - Distribuzione Linux basata su Debian. Security & Privacy First.">
+<title>Future OS - Security & Privacy First</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-logo"><span class="cyan">F</span>uture OS</span>
+    <div class="nav-links">
+      <a href="#features">Caratteristiche</a>
+      <a href="#packages">Pacchetti</a>
+      <a href="#install">Installazione</a>
+      <a href="https://github.com/blue-terminal/Future-os">GitHub</a>
+      <a href="#download" class="btn-nav">Download</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hex-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="50,5 90,27.5 90,72.5 50,95 10,72.5 10,27.5" fill="none" stroke="#00d4ff" stroke-width="2"/>
+        <polygon points="50,15 80,32.5 80,67.5 50,85 20,67.5 20,32.5" fill="none" stroke="#00d4ff" stroke-width="0.8" opacity="0.3"/>
+        <text x="50" y="63" font-family="monospace" font-size="36" font-weight="bold" fill="#00d4ff" text-anchor="middle">F</text>
+      </svg>
+    </div>
+    <h1>FUTURE <span class="cyan">OS</span></h1>
+    <p class="tagline">SECURITY &amp; PRIVACY FIRST</p>
+    <p class="description">Distribuzione Linux basata su Debian Testing.<br>Strumenti di sicurezza, privacy e produttività — pronti da subito.</p>
+    <div class="hero-actions">
+      <a href="#download" class="btn btn-primary">⬇ Download ISO</a>
+      <a href="https://github.com/blue-terminal/Future-os" class="btn btn-secondary">📦 GitHub</a>
+    </div>
+    <div class="hero-badges">
+      <span class="badge">Debian Testing</span>
+      <span class="badge">GPL-3.0</span>
+      <span class="badge">x86_64</span>
+      <span class="badge">v1.0 Horizon</span>
+    </div>
+  </div>
+</header>
+
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="section-title">// <span class="cyan">Caratteristiche</span></h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Sicurezza di default</h3>
+        <p>AppArmor, UFW, Fail2ban e ClamAV preinstallati e configurati. Firewall attivo dal primo avvio.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕵️</div>
+        <h3>Privacy al centro</h3>
+        <p>Tor Browser, WireGuard, VeraCrypt e Firejail inclusi. Nessuna telemetria. DNS sicuri di default.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Auto-aggiornamento</h3>
+        <p>Aggiornamenti di sicurezza automatici ogni notte. Comando <code>sudo smart update</code> per aggiornare tutto.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Leggero e veloce</h3>
+        <p>Desktop MATE ottimizzato. Avvio rapido, basso consumo RAM. Ideale anche su hardware datato.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>Identità originale</h3>
+        <p>Tema dark FutureOS-Dark, icone Papirus, font Inter + JetBrains Mono. GRUB e Plymouth personalizzati.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛠</div>
+        <h3>Pentesting ready</h3>
+        <p>Nmap, Wireshark, Aircrack-ng, John, Hydra e altri strumenti professionali preinstallati.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">// <span class="cyan">Pacchetti inclusi</span></h2>
+    <div class="pkg-grid">
+      <div class="pkg-cat">
+        <h4>🖥 Desktop</h4>
+        <ul>
+          <li>MATE Desktop Environment</li>
+          <li>LightDM Greeter</li>
+          <li>Plymouth Boot Splash</li>
+          <li>Tilix &amp; MATE Terminal</li>
+          <li>Caja File Manager</li>
+        </ul>
+      </div>
+      <div class="pkg-cat">
+        <h4>🌐 Internet</h4>
+        <ul>
+          <li>Firefox ESR</li>
+          <li>Tor Browser</li>
+          <li>Thunderbird</li>
+          <li>Signal Desktop</li>
+          <li>Telegram Desktop</li>
+        </ul>
+      </div>
+      <div class="pkg-cat">
+        <h4>🔐 Sicurezza</h4>
+        <ul>
+          <li>UFW / GUFW Firewall</li>
+          <li>AppArmor</li>
+          <li>Fail2ban</li>
+          <li>ClamAV + ClamTK</li>
+          <li>Firejail Sandbox</li>
+          <li>KeePassXC</li>
+          <li>VeraCrypt</li>
+          <li>WireGuard / OpenVPN</li>
+        </ul>
+      </div>
+      <div class="pkg-cat">
+        <h4>🔍 Pentesting</h4>
+        <ul>
+          <li>Nmap</li>
+          <li>Wireshark</li>
+          <li>Aircrack-ng</li>
+          <li>John the Ripper</li>
+          <li>Hydra</li>
+          <li>Netcat</li>
+          <li>Tcpdump</li>
+          <li>Scapy</li>
+        </ul>
+      </div>
+      <div class="pkg-cat">
+        <h4>📁 Produttività</h4>
+        <ul>
+          <li>LibreOffice (IT)</li>
+          <li>GIMP</li>
+          <li>Inkscape</li>
+          <li>VLC / MPV</li>
+          <li>Audacity</li>
+          <li>VSCodium</li>
+          <li>Gedit</li>
+        </ul>
+      </div>
+      <div class="pkg-cat">
+        <h4>🎨 Tema</h4>
+        <ul>
+          <li>FutureOS-Dark GTK</li>
+          <li>Papirus-Dark Icons</li>
+          <li>Inter UI Font</li>
+          <li>JetBrains Mono</li>
+          <li>GRUB Theme custom</li>
+          <li>Plymouth Splash</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install" class="section">
+  <div class="container">
+    <h2 class="section-title">// <span class="cyan">Installazione</span></h2>
+    <div class="steps">
+      <div class="step"><span class="step-n">01</span><div><h3>Scarica la ISO</h3><p>Scarica l'immagine ISO da GitHub Releases o dal link download qui sotto.</p></div></div>
+      <div class="step"><span class="step-n">02</span><div><h3>Crea USB avviabile</h3><p><code>sudo dd if=future-os-1.0.iso of=/dev/sdX bs=4M status=progress</code></p></div></div>
+      <div class="step"><span class="step-n">03</span><div><h3>Avvia dal USB</h3><p>Riavvia il PC e avvia dal dispositivo USB. Seleziona "Live" per provare o "Install".</p></div></div>
+      <div class="step"><span class="step-n">04</span><div><h3>Installa</h3><p>Apri il terminale e digita <code>sudo future-os-install</code> per avviare l'installer grafico.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="download" class="section section-alt">
+  <div class="container" style="text-align:center">
+    <h2 class="section-title" style="text-align:center">// <span class="cyan">Download</span></h2>
+    <p style="color:var(--muted);margin-bottom:32px">Future OS 1.0 Horizon &mdash; x86_64 &mdash; ~2.8 GB</p>
+    <a href="https://github.com/blue-terminal/Future-os/releases" class="btn btn-primary btn-large">⬇ Scarica Future OS 1.0</a>
+    <p style="color:var(--muted);margin-top:16px;font-size:.85rem">Verifica l'integrità con SHA256SUMS prima dell'installazione.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><span class="cyan">F</span>uture OS</div>
+        <p>Security &amp; Privacy First</p>
+      </div>
+      <div>
+        <h4>Link</h4>
+        <ul>
+          <li><a href="https://github.com/blue-terminal/Future-os">GitHub</a></li>
+          <li><a href="https://futureos.io/support">Supporto</a></li>
+          <li><a href="https://futureos.io/bugs">Segnala bug</a></li>
+          <li><a href="https://futureos.io/privacy">Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Risorse</h4>
+        <ul>
+          <li><a href="https://github.com/blue-terminal/Future-os/blob/main/LICENSE">GPL-3.0</a></li>
+          <li><a href="https://www.debian.org">Debian Testing</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 blue-terminal &mdash; Future OS &mdash; <a href="https://futureos.io">futureos.io</a> &mdash; GPL-3.0</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

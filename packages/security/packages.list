@@ -1,0 +1,27 @@
+# Future OS - Strumenti sicurezza e pentesting
+ufw
+gufw
+fail2ban
+clamav
+clamtk
+apparmor
+apparmor-utils
+apparmor-profiles
+apparmor-profiles-extra
+firejail
+wireguard
+openvpn
+nmap
+wireshark
+netcat-openbsd
+tcpdump
+aircrack-ng
+john
+hydra
+gpg
+macchanger
+tor
+torbrowser-launcher
+veracrypt
+libssl-dev
+python3-scapy
